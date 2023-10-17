@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <!-- Make sure the path to tbwidget.es5.js is correct -->
+  <script src="tbwidget.es5.js"></script>
+  <link rel="stylesheet" href="site.css"/>
+</head>
+<body>
+    <div id="tb_more_recommendations_box" class="tb-box">
+      <div class="tb-title">You may like</div>
+        <div id="tbwidget_container" class="tb-content">
+            <script>
+                var tbwidgetScript = document.createElement('script');
+                tbwidgetScript.src = 'tbwidget.es5.js';
+                tbwidgetScript.onload = function()
+             {
+                    // Define the tbwidget variable here
+                    var tbwidget = new TBWidget(
+                        "apitestaccount",
+                        "web",
+                        "7be65fc78e52c11727793f68b06d782cff9ede3c"
+                    );
+
+                    tbwidget.register("tbwidget_container", "text", 6, function (item) {
+                        return "<div class='tb-item'>" +
+                                    "<a href='" + item.url + "' target='_blank'>" +
+                                        "<div class='tb-item-image' style='background-image:url(\"" + item.thumbnail + "\")'>" +
+                                        "</div>" +
+                                        "<div class='tb-item-label'>" +
+                                        item.name +
+                                        "</div>" +
+                                        "<div class='tb-item-branding'>"+
+                                        item.branding +
+                                        "</div>"+
+                                        "<div class='tb-item-category'>"+
+                                        item.categories +
+                                        "</div>"+
+                                        "</div>" +
+                                    "</a>" +
+                                "</div>"
+                    }).then(function (element) {
+                        // Optional: Handle the completion of registration here if needed
+                    });
+
+                    tbwidget.build();
+                };
+                document.head.appendChild(tbwidgetScript);
+            </script>
+        </div>
+    </div>
+</body>
+</html>
